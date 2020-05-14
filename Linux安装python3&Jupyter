@@ -1,0 +1,47 @@
+# 安装python3
+[如何在linux安装python3](https://linuxize.com/post/how-to-install-python-3-7-on-debian-9/)
+## 安装python
+<html>
+<ol><li><p>Start by installing the packages necessary to build Python source:</p><pre class="terminal"><code class="terminal-line" prefix="$">sudo apt update</code><code class="terminal-line" prefix="$">sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev curl</code></pre></li><li><p>Download the latest release’s source code from the <a href="https://www.python.org/downloads/source/">Python download page</a> using the following <a href="https://linuxize.com/post/curl-command-examples/">curl command</a>:</p><pre class="terminal"><code class="terminal-line" prefix="$">curl -O https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tar.xz</code></pre><p>At the time of writing this article, the latest release is <code>3.7.3</code>.</p></li><li><p>When download is complete, <a href="https://linuxize.com/post/how-to-create-and-extract-archives-using-the-tar-command-in-linux/">extract the tarball</a>:</p><pre class="terminal"><code class="terminal-line" prefix="$">tar -xf Python-3.7.3.tar.xz</code></pre></li><li><p><a href="https://linuxize.com/post/linux-cd-command/">Navigate</a> to the Python source directory and run the <code>configure</code> script that will perform a number of checks to make sure all of the dependencies on your system are present:</p><pre class="terminal"><code class="terminal-line" prefix="$">cd Python-3.7.3</code><code class="terminal-line" prefix="$">./configure --enable-optimizations</code></pre><p>The <code>--enable-optimizations</code> option will optimize the Python binary by running multiple tests which will make the build process slower.</p></li><li><p>Run <code>make</code> to start the build process:</p><pre class="terminal"><code class="terminal-line" prefix="$">make -j 8</code></pre><p>For faster build time, modify the <code>-j</code> flag according to your processor. If you do not know the number of cores your processor you can find it by typing <code>nproc</code>. My system has 8 cores, so I am using the <code>-j8</code> flag.</p></li><li><p>Once the build is done install the Python binaries by running the following command as a <a href="https://linuxize.com/post/how-to-create-a-sudo-user-on-debian/">user with sudo access</a>:</p><pre class="terminal"><code class="terminal-line" prefix="$">sudo make altinstall</code></pre><p>Do not use the standard <code>make install</code> as it will overwrite the default system <code>python3</code> binary.</p></li><li><p>At this point, Python 3.7 is installed on your Debian system and ready to be used. You can verify it by typing:</p><pre class="terminal"><code class="terminal-line" prefix="$">python3.7 --version</code></pre><pre><code class="language-output" data-lang="output">Python 3.7.3</code></pre></li></ol>
+</html>
+
+## 安装pip
+[安装pip](https://linuxize.com/post/how-to-install-pip-on-debian-9/)
+
+
+# Jupyter nbextensions
+```
+pip install jupyter_contrib_nbextensions
+jupyter contrib nbextension install --user
+```
+
+## 安装nbextensions
+需要linux系统的libsqlite3-dev库
+[nbextensions](https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/install.html)
+
+## 远程登陆
+```
+#一、生成配置文件
+jupyter notebook --generate-config  
+
+#二、打开ipython, 创建一个密文密码  
+In [1]: from notebook.auth import passwd  
+In [2]: passwd()  
+Enter password:   
+Verify password:   
+Out[2]: 'sha1:7382ba5a83f5:5cc86e59bd3bfea925ff9acddfb5b53c1a49dfa7'  
+把密码串拷贝到剪切板  
+
+#三、修改默认配置文件  
+vi ~/.jupyter/jupyter_notebook_config.py  
+#进行如下修改：  
+c.NotebookApp.ip='0.0.0.0' # 就是设置所有ip皆可访问  
+c.NotebookApp.password = u'sha:73...刚才复制的那个密文'
+c.NotebookApp.open_browser = False # 禁止自动打开浏览器 
+c.NotebookApp.port =8888 #随便指定一个端口  
+
+#四、启动jupyter notebook  
+jupyter notebook --allow-root
+这时在远程机上访问服务器的8888应该大功告成！  
+```
+
