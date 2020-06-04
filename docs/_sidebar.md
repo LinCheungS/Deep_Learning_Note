@@ -1,0 +1,10 @@
+* **1\.神经网络和深度学习**
+    * [1.百度AI接口](./Python库学习/1.百度AI接口.md)
+* **2\.改善深层神经网络**
+    * [1.docsify文档编写](./其他库学习/1.docsify文档编写.md)
+* **3\.结构化机器学习**
+    * [1.worldpress博客](./环境搭建教程/1.worldpress博客.md)
+* **4\.卷积神经网络**
+    * [1.worldpress博客](./环境搭建教程/1.worldpress博客.md)
+* **5\.序列模型**
+    * [1.worldpress博客](./环境搭建教程/1.worldpress博客.md)
